@@ -1,20 +1,34 @@
 // This component serves as the main screen of InSites, presenting users with Dashboard information after signing in
 
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Card from '../components/Card';
+import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'react-native';
 import HeadingText from '../styles/HeadingText';
+import Card from '../components/Card';
 import PieChart from 'react-native-pie-chart';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import SocialCard from '../components/SocialCard';
+import BottomNav from '../components/BottomNav';
+import AppBar from '../components/AppBar';
 
 // Temporary Pie Chart Data
-const series = [12, 34, 45, 56, 20];
-const sliceColor = ['#fbd203', '#ffb300', '#ff9100', '#ff6c00', '#ff3c00'];
+const series = [9, 34];
+const sliceColor = ['#ff5fb7', '#b34cd9',];
+
+// Social Media Card Colors
+const colors = ["#b34cd9", "#ff5fb7", "#ff8590"];
 
 export default function Home({ navigation }) {
     return (
         <View style={styles.container}>
-            {/* Page Title */}
-            <HeadingText>Dashboard</HeadingText>
+             {/* Navigation */}
+             <View style={{ width: '100%' }}>
+                <AppBar navigation={navigation}></AppBar>
+            </View>
 
+            {/* Page Title */}
+            <View style={{ alignSelf: 'flex-start', paddingHorizontal: 40, paddingTop: 10 }}>
+                <HeadingText>Dashboard</HeadingText>
+            </View>
             <View style={{
                 width: '100%',
                 flexDirection: 'column',
@@ -23,52 +37,62 @@ export default function Home({ navigation }) {
                 padding: 20,
                 paddingTop: 10,
             }}>
-                <ScrollView style={{
-                    width: '95%',
-                    height: '80%',
-                }
-                }>
+                <ScrollView
+                    style={{
+                        width: '95%',
+                        height: '70%',
+                    }}
+                    showsVerticalScrollIndicator={false}
+                >
                     {/* Main Dashboard Chart */}
-                    <Card color={'lightgrey'} height={200}>
+                    <Card colors={['#f4f4f5', '#f4f4f5']} height={220}>
                         <View
                             style={{
                                 width: '100%',
                                 display: 'flex',
-                                justifyContent: 'center',
+                                justifyContent: 'space-between',
                                 alignItems: 'center',
+                                padding: 20,
                             }}>
                             <PieChart
                                 widthAndHeight={150}
                                 series={series}
                                 sliceColor={sliceColor}
                             />
+                            <TouchableOpacity
+                                style={{ alignSelf: "flex-end" }}
+                                onPress={() => { navigation.navigate('Analytics') }}
+                                accessibilityLabel="See more user analytics details"
+                            >
+                                <Text>See more...</Text>
+                            </TouchableOpacity>
                         </View>
                     </Card>
 
                     {/* Social Account Dashboards */}
-                    <Card color={'lightgrey'} height={120}>
-                        <Text>Twitter</Text>
-                    </Card>
-
-                    <Card color={'lightgrey'} height={120}>
-                        <Text>Instagram</Text>
-                    </Card>
+                    <SocialCard colors={[colors[0], colors[1]]} name="instagram" title="Instagram"></SocialCard>
+                    <SocialCard colors={[colors[1], colors[2]]} name="twitter" title="Twitter"></SocialCard>
 
                     {/* New Social Account */}
-                    <Card color={'lightgrey'} height={80}>
-                        <Text>Add More</Text>
+                    <Card colors={['#f4f4f5', '#f4f4f5']} height={60}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <View style={{ paddingHorizontal: 5 }}>
+                                <FontAwesome name='plus' size={15}></FontAwesome>
+                            </View>
+
+                            <View style={{ paddingHorizontal: 5 }}>
+                                <Text style={{ fontSize: 15, fontWeight: '500' }}>Add Account</Text>
+                            </View>
+                        </View>
                     </Card>
                 </ScrollView>
             </View>
 
 
             {/* Navigation */}
-            <Button
-                title='Analytics'
-                onPress={() =>
-                    navigation.navigate('Analytics')
-                }
-            />
+            <View style={{ width: '100%' }}>
+                <BottomNav navigation={navigation}></BottomNav>
+            </View>
         </View >
     );
 };
@@ -79,6 +103,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 5,
     },
 });

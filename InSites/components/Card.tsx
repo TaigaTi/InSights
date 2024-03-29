@@ -1,19 +1,20 @@
 import { ReactNode } from "react";
 import { View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface CardProps {
-    color: string;
+    colors: string[];
     height: number;
     children?: ReactNode;
 }
 
-export default function Card({ color, height, children }: CardProps) {
+export default function Card({ colors, height, children }: CardProps) {
     return (
         <View style={{
             width: '100%',
             padding: 5,
         }}>
-            <View
+            {/* <View
                 style={{
                     flexDirection: 'row',
                     padding: 20,
@@ -22,7 +23,20 @@ export default function Card({ color, height, children }: CardProps) {
                     height: height,
                 }}>
                 {children}
-            </View>
+            </View> */}
+
+            <LinearGradient
+                start={[0, 0]} // Start point (x, y)
+                end={[1, 1]}
+                colors={colors}
+                style={{
+                    padding: 20,
+                    borderRadius: 15,
+                    height: height,
+                }}
+            >
+                {children}
+            </LinearGradient>
         </View>
     );
 };
