@@ -1,3 +1,5 @@
+<img src="https://github.com/TaigaTi/InSites/blob/main/InSites/assets/icons/insites-logo.png?raw=true" alt="Image Alt Text" width="50" height="50"/> 
+
 # InSites
 
 InSites is a social media dashboard app designed to track user analytics across various social media platforms.
