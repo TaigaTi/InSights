@@ -11,7 +11,7 @@ export default function AppBar() {
                 <Text style={styles.title}>InSites</Text>
             </View>
             <View style={styles.rightContainer}>
-                <FontAwesome name='user-circle'  size={30}  color={colors.orange}/>
+                <FontAwesome name='user-circle'  size={30}  color={colors.purple}/>
             </View>
         </View>
     );
