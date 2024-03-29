@@ -9,13 +9,11 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import SocialCard from '../components/SocialCard';
 import BottomNav from '../components/BottomNav';
 import AppBar from '../components/AppBar';
+import { colors } from '../styles/theme';
 
 // Temporary Pie Chart Data
 const series = [9, 34];
-const sliceColor = ['#ff5fb7', '#b34cd9',];
-
-// Social Media Card Colors
-const colors = ["#b34cd9", "#ff5fb7", "#ff8590"];
+const sliceColor = [colors.pink, colors.purple];
 
 export default function Home({ navigation }) {
     return (
@@ -45,7 +43,7 @@ export default function Home({ navigation }) {
                     showsVerticalScrollIndicator={false}
                 >
                     {/* Main Dashboard Chart */}
-                    <Card colors={['#f4f4f5', '#f4f4f5']} height={220}>
+                    <Card colors={[colors.grey, colors.grey]} height={220}>
                         <View
                             style={{
                                 width: '100%',
@@ -70,11 +68,12 @@ export default function Home({ navigation }) {
                     </Card>
 
                     {/* Social Account Dashboards */}
-                    <SocialCard colors={[colors[0], colors[1]]} name="instagram" title="Instagram"></SocialCard>
-                    <SocialCard colors={[colors[1], colors[2]]} name="twitter" title="Twitter"></SocialCard>
+                    <SocialCard colors={[colors.purple, colors.pink]} name="instagram" title="Instagram"></SocialCard>
+                    <SocialCard colors={[colors.pink, colors.orange]} name="twitter" title="Twitter"></SocialCard>
+                    <SocialCard colors={[colors.blue, colors.darkblue]} name="facebook" title="Facebook"></SocialCard>
 
                     {/* New Social Account */}
-                    <Card colors={['#f4f4f5', '#f4f4f5']} height={60}>
+                    <Card colors={[colors.grey, colors.grey]} height={60}>
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ paddingHorizontal: 5 }}>
                                 <FontAwesome name='plus' size={15}></FontAwesome>

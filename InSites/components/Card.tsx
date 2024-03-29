@@ -14,19 +14,8 @@ export default function Card({ colors, height, children }: CardProps) {
             width: '100%',
             padding: 5,
         }}>
-            {/* <View
-                style={{
-                    flexDirection: 'row',
-                    padding: 20,
-                    backgroundColor: color,
-                    borderRadius: 15,
-                    height: height,
-                }}>
-                {children}
-            </View> */}
-
             <LinearGradient
-                start={[0, 0]} // Start point (x, y)
+                start={[0, 0]} 
                 end={[1, 1]}
                 colors={colors}
                 style={{

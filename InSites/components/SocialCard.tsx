@@ -15,7 +15,7 @@ export default function SocialCard(SocialCardProps) {
     return (
         <Card colors={SocialCardProps.colors} height={120}>
             <View style={{ flexDirection: 'row', width: '100%' }}>
-                <FontAwesome name={SocialCardProps.name} size={20} color="#FFF" />
+                <FontAwesome name={SocialCardProps.name} size={20} color='white' />
                 <Text
                     style={{
                         color: 'white',
