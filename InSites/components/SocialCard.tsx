@@ -14,18 +14,19 @@ interface SocialCardProps {
 export default function SocialCard(SocialCardProps) {
     return (
         <Card colors={SocialCardProps.colors} height={120}>
-            <View style={{ flexDirection: 'row', width: '100%' }}>
-                <FontAwesome name={SocialCardProps.name} size={20} color='white' />
-                <Text
-                    style={{
-                        color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: 15,
-                        padding: 1,
-                        paddingHorizontal: 10,
-                    }}
-                >{SocialCardProps.title}</Text>
-            </View>
+            {SocialCardProps.title &&
+                (<View style={{ flexDirection: 'row', width: '100%' }}>
+                    <FontAwesome name={SocialCardProps.name} size={20} color='white' />
+                    <Text
+                        style={{
+                            color: 'white',
+                            fontWeight: 'bold',
+                            fontSize: 15,
+                            padding: 1,
+                            paddingHorizontal: 10,
+                        }}
+                    >{SocialCardProps.title}</Text>
+                </View>)}
 
             <View style={{ flexDirection: 'row', paddingVertical: 15, justifyContent: 'space-evenly' }}>
                 <View style={styles.container}>
