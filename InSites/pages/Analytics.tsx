@@ -42,6 +42,7 @@ export default function Analytics({ navigation }) {
                     }}
                     showsVerticalScrollIndicator={false}
                 >
+                    {/* Summary Card */}
                     <Card colors={[colors.purple, colors.pink]} height={80}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <View style={styles.textContainer}>
@@ -61,16 +62,23 @@ export default function Analytics({ navigation }) {
                         </View>
                     </Card>
 
+                    {/* Engagement Card */}
                     <Card colors={[colors.grey, colors.grey]} height={180}>
-
+                        <View>
+                            <Text style={styles.cardTitle}>Engagement</Text>
+                        </View>
                     </Card>
 
+                    {/* Audience Card */}
                     <Card colors={[colors.grey, colors.grey]} height={180}>
+                        <View >
+                            <Text style={styles.cardTitle}>Audience</Text>
+                        </View>
                         <View
                             style={{
                                 width: '100%',
                                 flexDirection: 'row',
-                                justifyContent: 'space-between',
+                                justifyContent: 'space-evenly',
                                 alignItems: 'center',
                                 padding: 20,
                             }}>
@@ -87,8 +95,9 @@ export default function Analytics({ navigation }) {
                         </View>
                     </Card>
 
+                    {/* Impressions Card */}
                     <Card colors={[colors.orange, colors.pink]} height={80}>
-                        <Text style={{fontSize: 16, color: 'white', fontWeight: 'bold'}}>Impressions: 256k</Text>
+                        <Text style={{ fontSize: 16, color: 'white', fontWeight: 'bold' }}>Impressions: 256k</Text>
                     </Card>
                 </ScrollView>
             </View>
@@ -117,5 +126,8 @@ const styles = StyleSheet.create({
     textContainer: {
         paddingHorizontal: 15,
         alignItems: 'center',
+    },
+    cardTitle: {
+        fontWeight: 'bold',
     }
 });

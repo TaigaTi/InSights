@@ -1,9 +1,100 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import AppBar from "../components/AppBar";
+import { StyleSheet } from "react-native";
+import BottomNav from "../components/BottomNav";
+import HeadingText from "../styles/HeadingText";
+import { colors } from "../styles/theme";
+import PostCard from "../components/PostCard";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { LinearGradient } from "expo-linear-gradient";
 
-export default function InSights() {
+export default function InSights({ navigation }) {
     return (
-        <View>
-            <Text>Welcome to the InSights Page</Text>
+        <View style={styles.container}>
+            {/* Navigation */}
+            <View style={{ width: '100%' }}>
+                <AppBar navigation={navigation}></AppBar>
+            </View>
+
+            {/* Page Title */}
+            <View style={{ flexDirection: 'row'}}>
+                <View style={styles.heading}>
+                    <HeadingText>InSights</HeadingText>
+                </View>
+
+                <TouchableOpacity style={styles.createPost}>
+                    <LinearGradient start={[0, 0]} end={[1, 1]} colors={[colors.pink, colors.purple]} style={styles.gradient} >
+                        <FontAwesome name="plus" size={10} color={'white'}></FontAwesome>
+                        <Text style={{ color: 'white', paddingStart: 10 }}>Create Post</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
+            </View>
+
+            <View style={{
+                width: '100%',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: 20,
+                paddingTop: 10,
+            }}>
+                <ScrollView
+                    style={{
+                        width: '95%',
+                        height: '70%',
+                    }}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <PostCard></PostCard>
+                    <PostCard></PostCard>
+                    <PostCard></PostCard>
+                </ScrollView>
+            </View>
+
+            {/* Navigation */}
+            <View style={{ width: '100%' }}>
+                <BottomNav navigation={navigation}></BottomNav>
+            </View>
         </View>
     );
 }
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    heading: {
+        paddingHorizontal: 40,
+        paddingTop: 10,
+    },
+    text: {
+        paddingVertical: 2,
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    textContainer: {
+        paddingHorizontal: 15,
+        alignItems: 'center',
+    },
+    cardTitle: {
+        fontWeight: 'bold',
+    },
+    createPost: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    gradient: {
+        paddingStart: 20,
+        padding: 10,
+        borderRadius: 15,
+        height: 40,
+        width: 150,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+});
