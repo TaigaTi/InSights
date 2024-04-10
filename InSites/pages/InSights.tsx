@@ -9,6 +9,10 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function InSights({ navigation }) {
+    const handleNavigation = (pageName: React.SetStateAction<string>) => {
+        navigation.navigate(pageName);
+    };
+
     return (
         <View style={styles.container}>
             {/* Navigation */}
@@ -17,17 +21,19 @@ export default function InSights({ navigation }) {
             </View>
 
             {/* Page Title */}
-            <View style={{ flexDirection: 'row'}}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <View style={styles.heading}>
                     <HeadingText>InSights</HeadingText>
                 </View>
 
-                <TouchableOpacity style={styles.createPost}>
-                    <LinearGradient start={[0, 0]} end={[1, 1]} colors={[colors.pink, colors.purple]} style={styles.gradient} >
-                        <FontAwesome name="plus" size={10} color={'white'}></FontAwesome>
-                        <Text style={{ color: 'white', paddingStart: 10 }}>Create Post</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
+                <View>
+                    <TouchableOpacity style={styles.createPost}>
+                        <LinearGradient start={[0, 0]} end={[1, 1]} colors={[colors.pink, colors.purple]} style={styles.gradient} >
+                            <FontAwesome name="plus" size={10} color={'white'}></FontAwesome>
+                            <Text style={{ color: 'white', paddingStart: 8, fontWeight: 'bold' }}>Create Post</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </View>
             </View>
 
             <View style={{
@@ -45,9 +51,24 @@ export default function InSights({ navigation }) {
                     }}
                     showsVerticalScrollIndicator={false}
                 >
-                    <PostCard></PostCard>
-                    <PostCard></PostCard>
-                    <PostCard></PostCard>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
                 </ScrollView>
             </View>
 
@@ -68,7 +89,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     heading: {
-        paddingHorizontal: 40,
+        justifyContent: 'flex-start',
+        paddingEnd: 120,
         paddingTop: 10,
     },
     text: {
@@ -87,13 +109,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
+        paddingTop: 10,
     },
     gradient: {
-        paddingStart: 20,
-        padding: 10,
-        borderRadius: 15,
-        height: 40,
-        width: 150,
+        paddingStart: 15,
+        padding: 5,
+        borderRadius: 8,
+        height: 30,
+        width: 130,
         flexDirection: 'row',
         alignItems: 'center',
     },

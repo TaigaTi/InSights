@@ -24,7 +24,7 @@ export default function PostCard() {
 
             <Text style={styles.description}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dolore pariatur vel voluptatibus laborum ex odit vitae dicta asperiores.
+                Dolore pariatur vel laborum ex odit vitae dicta asperiores.
                 Ducimus, dicta obcaecati. Fuga vel nisi quos tempora delectus beatae, deserunt ea!
             </Text>
 
@@ -44,8 +44,10 @@ const styles = StyleSheet.create({
     },
     description: {
         alignItems: 'center',
-        height: '50%',
+        height: '45%',
+        width: '95%',
         overflow: 'hidden',
+        lineHeight: 20,
     },
     author: {
         paddingVertical: 10,
