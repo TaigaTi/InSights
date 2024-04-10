@@ -9,6 +9,10 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function InSights({ navigation }) {
+    const handleNavigation = (pageName: React.SetStateAction<string>) => {
+        navigation.navigate(pageName);
+    };
+
     return (
         <View style={styles.container}>
             {/* Navigation */}
@@ -47,12 +51,24 @@ export default function InSights({ navigation }) {
                     }}
                     showsVerticalScrollIndicator={false}
                 >
-                    <PostCard></PostCard>
-                    <PostCard></PostCard>
-                    <PostCard></PostCard>
-                    <PostCard></PostCard>
-                    <PostCard></PostCard>
-                    <PostCard></PostCard>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleNavigation('Post')}>
+                        <PostCard></PostCard>
+                    </TouchableOpacity>
                 </ScrollView>
             </View>
 
