@@ -6,11 +6,15 @@ import React, { useState } from "react";
 import firebaseApp from "../firebaseConfig";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc, getFirestore } from 'firebase/firestore';
+import CustomAlert from "../components/Alert";
 
 export default function Signup({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const [alertVisible, setAlertVisible] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+    const [alertTitle, setAlertTitle] = useState('');
 
     const handleSignUp = async () => {
         try {
@@ -29,27 +33,39 @@ export default function Signup({ navigation }) {
                 name,
                 email
             });
+            setAlertTitle("Welcome to InSites!");
+            setAlertMessage("Your account has been created successfully!");
+            setAlertVisible(true);
 
-            Alert.alert(
-                "Welcome to InSites!",
-                "Your account has been created successfully!",
-                [{ text: "OK", onPress: () => navigation.navigate('Home') }],
-                { cancelable: true }
-            );
-        } catch (error) {
+        } catch (error: Error | any) {
             const errorMessage = error.message;
-            console.log(errorMessage);
-            Alert.alert(
-                "Error",
-                errorMessage,
-                [{ text: "OK" }],
-                { cancelable: false }
-            );
+            setAlertTitle("Error");
+            setAlertMessage(errorMessage);
+            setAlertVisible(true);
         }
     };
 
     return (
         <View style={styles.container}>
+            <CustomAlert
+                visible={alertVisible}
+                title={alertTitle}
+                message={alertMessage}
+                buttons={[{
+                    text: "OK", onPress: () => {
+                        setAlertVisible(false);
+                        if (alertTitle !== "Error") {
+                            navigation.navigate('Login');
+                        }
+                    }
+                }]}
+                onRequestClose={() => {
+                    setAlertVisible(false);
+                    if (alertTitle !== "Error") {
+                        navigation.navigate('Login');
+                    }
+                }}
+            />
             <View style={{
                 width: '100%',
                 flexDirection: 'column',

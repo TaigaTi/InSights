@@ -1,35 +1,49 @@
-import { View, Text, ScrollView, TextInput, Button, GestureResponderEvent, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TextInput, Button, GestureResponderEvent, TouchableOpacity, Alert } from "react-native";
 import { StyleSheet } from "react-native";
 import { colors } from "../styles/theme";
 import { Image } from "react-native";
 import React, { useState } from "react";
 import firebaseApp from "../firebaseConfig";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import CustomAlert from "../components/Alert";
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const handleSubmit = () => {
-        navigation.navigate('Home');
-    }
+    const [alertVisible, setAlertVisible] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+    const [alertTitle, setAlertTitle] = useState('');
 
     const handleLogin = () => {
         const auth = getAuth(firebaseApp);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                // Do something with the signed-in user
+                navigation.navigate('Home');
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
-                // Handle errors
+                setAlertTitle("Error");
+                setAlertMessage(errorMessage);
+                setAlertVisible(true);
             });
     };
 
     return (
         <View style={styles.container}>
+            <CustomAlert
+                visible={alertVisible}
+                title={alertTitle}
+                message={alertMessage}
+                buttons={[{
+                    text: "OK", onPress: () => {
+                        setAlertVisible(false);
+                    }
+                }]}
+                onRequestClose={() => {
+                    setAlertVisible(false);
+                }}
+            />
             <View style={{
                 width: '100%',
                 flexDirection: 'column',
@@ -60,7 +74,7 @@ export default function Login({ navigation }) {
 
                     {/* Login Input */}
                     <View style={{ height: 190, justifyContent: 'space-between', paddingBottom: 30, }}>
-                        <Text style={styles.inputLabel}>Name</Text>
+                        <Text style={styles.inputLabel}>Email</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="Email"
@@ -79,7 +93,7 @@ export default function Login({ navigation }) {
                     </View>
 
                     {/* Submit Button */}
-                    <TouchableOpacity onPress={handleSubmit} style={styles.loginButton}>
+                    <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
                         <Text style={styles.loginButtonText}>Log In</Text>
                     </TouchableOpacity>
 
