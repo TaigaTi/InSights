@@ -24,8 +24,7 @@ To get started with InSites, follow these steps:
 
 ## Technologies Used
 
-- React Native
 - Expo
-- React Navigation
-- React Native SVG Charts
-- Firebase
+- React Native
+- Firebase Authentication
+- Firestore
