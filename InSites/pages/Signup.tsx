@@ -1,30 +1,44 @@
-import { View, Text, ScrollView, TextInput, Button, GestureResponderEvent, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TextInput, Button, GestureResponderEvent, TouchableOpacity, Alert } from "react-native";
 import { StyleSheet } from "react-native";
 import { colors } from "../styles/theme";
 import { Image } from "react-native";
 import React, { useState } from "react";
 import firebaseApp from "../firebaseConfig";
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-export default function Login({ navigation }) {
+export default function Signup({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
 
-    const handleSubmit = () => {
-        navigation.navigate('Home');
-    }
-
-    const handleLogin = () => {
+    const handleSignUp = () => {
         const auth = getAuth(firebaseApp);
-        signInWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                // Do something with the signed-in user
+                Alert.alert(
+                    "Welcome to InSites!",
+                    "Your account has been created successfully!",
+                    [
+                        { text: "OK", onPress: () => navigation.navigate('Home') }
+                    ],
+                    { cancelable: true }
+
+                );
+                navigation.navigate('Home');
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // Handle errors
+                console.log(errorCode, errorMessage)
+                Alert.alert(
+                    "Error",
+                    errorMessage,
+                    [
+                        { text: "OK" }
+                    ],
+                    { cancelable: false }
+                );
             });
     };
 
@@ -54,13 +68,20 @@ export default function Login({ navigation }) {
 
                     {/* Login Heading */}
                     <View style={styles.headingContainer}>
-                        <Text style={styles.loginHeading}>Login</Text>
-                        <Text style={styles.loginSubHeading}>Sign in to continue.</Text>
+                        <Text style={styles.loginHeading}>Signup</Text>
+                        <Text style={styles.loginSubHeading}>Sign up to continue.</Text>
                     </View>
 
                     {/* Login Input */}
-                    <View style={{ height: 190, justifyContent: 'space-between', paddingBottom: 30, }}>
+                    <View style={{ height: 260, justifyContent: 'space-between', paddingBottom: 30, }}>
                         <Text style={styles.inputLabel}>Name</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Name"
+                            value={name}
+                            onChangeText={setName}
+                        />
+                        <Text style={styles.inputLabel}>Email</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="Email"
@@ -79,14 +100,15 @@ export default function Login({ navigation }) {
                     </View>
 
                     {/* Submit Button */}
-                    <TouchableOpacity onPress={handleSubmit} style={styles.loginButton}>
-                        <Text style={styles.loginButtonText}>Log In</Text>
+                    <TouchableOpacity onPress={handleSignUp} style={styles.loginButton}>
+                        <Text style={styles.loginButtonText}>Sign Up</Text>
                     </TouchableOpacity>
 
-                    {/* Switch to Login */}
-                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                        <Text style={styles.switchToSignup}>Don't have an account? Sign Up</Text>
+                       {/* Switch to Login */}
+                       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                        <Text style={styles.switchToLogin}>Already signed up? Log In</Text>   
                     </TouchableOpacity>
+
                 </ScrollView>
             </View>
             {/* Footer Design */}
@@ -121,7 +143,7 @@ const styles = StyleSheet.create({
     },
     headingContainer: {
         alignItems: 'center',
-        paddingTop: 80,
+        paddingTop: 60,
     },
     loginHeading: {
         fontWeight: 'bold',
@@ -146,7 +168,7 @@ const styles = StyleSheet.create({
     inputLabel: {
         width: '80%',
         paddingTop: 15,
-        paddingBottom: 5,
+        paddingBottom: 2,
         paddingLeft: 40,
         opacity: 0.6,
     },
@@ -165,7 +187,7 @@ const styles = StyleSheet.create({
     footer: {
         width: '100%',
     },
-    switchToSignup: {
+    switchToLogin: {
         color: colors.black,
         opacity: 0.45,
         textAlign: 'center',

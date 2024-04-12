@@ -6,6 +6,8 @@ import Analytics from './pages/Analytics';
 import InSights from './pages/InSights';
 import Post from './pages/Post';
 import Login from './pages/Login';
+import firebaseApp from './firebaseConfig'; 
+import Signup from './pages/Signup';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +15,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}></Stack.Screen>
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}></Stack.Screen>
         <Stack.Screen name='Home' component={Home} options={{ headerShown: false }}></Stack.Screen>
         <Stack.Screen name='Analytics' component={Analytics} options={{ headerShown: false }}></Stack.Screen>
