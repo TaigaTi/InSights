@@ -6,7 +6,6 @@ import Analytics from './pages/Analytics';
 import InSights from './pages/InSights';
 import Post from './pages/Post';
 import Login from './pages/Login';
-import firebaseApp from './firebaseConfig'; 
 import Signup from './pages/Signup';
 
 const Stack = createNativeStackNavigator();
