@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TextInput, Button, GestureResponderEvent, TouchableOpacity, Alert } from "react-native";
+import { View, Text, ScrollView, TextInput, Button, GestureResponderEvent, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { StyleSheet } from "react-native";
 import { colors } from "../styles/theme";
 import { Image } from "react-native";
@@ -20,9 +20,12 @@ export default function Signup({ navigation }: SignupProps) {
     const [alertVisible, setAlertVisible] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const [alertTitle, setAlertTitle] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSignUp = async () => {
         try {
+            setLoading(true);
+
             const auth = getAuth(firebaseApp);
             const firestore = getFirestore(firebaseApp);
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -47,6 +50,8 @@ export default function Signup({ navigation }: SignupProps) {
             setAlertTitle("Error");
             setAlertMessage(errorMessage);
             setAlertVisible(true);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -128,7 +133,11 @@ export default function Signup({ navigation }: SignupProps) {
 
                     {/* Submit Button */}
                     <TouchableOpacity onPress={handleSignUp} style={styles.loginButton}>
-                        <Text style={styles.loginButtonText}>Sign Up</Text>
+                    {loading ? (
+                            <ActivityIndicator color="white" />
+                        ) : (
+                            <Text style={styles.loginButtonText}>Sign Up</Text>
+                        )}
                     </TouchableOpacity>
 
                     {/* Switch to Login */}

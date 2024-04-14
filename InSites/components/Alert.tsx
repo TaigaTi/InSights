@@ -2,9 +2,16 @@ import React from 'react';
 import { Modal, View, Text, TouchableOpacity, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import { colors } from '../styles/theme';
-// import { styles } from './CustomAlertStyles';
 
-const CustomAlert = ({ visible, title, message, buttons, onRequestClose }) => {
+interface CustomAlertProps {
+    visible: boolean;
+    title: string;
+    message: string;
+    buttons: any[];
+    onRequestClose: () => void;
+}
+
+const CustomAlert = ({ visible, title, message, buttons, onRequestClose }: CustomAlertProps) => {
     return (
         <Modal
             visible={visible}
