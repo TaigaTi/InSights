@@ -79,7 +79,7 @@ export default function InSights({ navigation }: InSightsProps) {
 
             {/* Navigation */}
             <View style={{ width: '100%' }}>
-                <BottomNav navigation={navigation}></BottomNav>
+                <BottomNav navigation={navigation} pageName="InSights"></BottomNav>
             </View>
         </View>
     );

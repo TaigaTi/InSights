@@ -1,7 +1,6 @@
 // This component serves as the main screen of InSites, presenting users with Dashboard information after signing in
 
-import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Image } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import HeadingText from '../styles/HeadingText';
 import Card from '../components/Card';
 import PieChart from 'react-native-pie-chart';
@@ -95,7 +94,7 @@ export default function Home({ navigation }: HomeProps) {
 
             {/* Navigation */}
             <View style={{ width: '100%' }}>
-                <BottomNav navigation={navigation}></BottomNav>
+                <BottomNav navigation={navigation} pageName='Home'></BottomNav>
             </View>
         </View >
     );

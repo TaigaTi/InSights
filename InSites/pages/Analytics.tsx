@@ -1,8 +1,8 @@
 // This component serves as the analytics page where users can view detailed insights of their social media stats
 
-import { Button, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
-import AppBar from '../components/AppBar';
+import {AppBar} from '../components/AppBar';
 import HeadingText from '../styles/HeadingText';
 import BottomNav from '../components/BottomNav';
 import Card from '../components/Card';
@@ -110,7 +110,7 @@ export default function Analytics({ navigation }: AnalyticsProps) {
 
             {/* Navigation */}
             <View style={{ width: '100%' }}>
-                <BottomNav navigation={navigation}></BottomNav>
+                <BottomNav navigation={navigation} pageName='Analytics'></BottomNav>
             </View>
         </View>
     );

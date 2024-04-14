@@ -1,24 +1,29 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { colors } from "../styles/theme";
 import Card from "./Card";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { StyleSheet } from "react-native";
 
-const authorColors = [
-    colors.blue,
-    colors.darkblue,
-    colors.pink,
-    colors.purple,
-    colors.orange
-];
+const authorIcons = {
+    userBlue: require('../assets/icons/user-blue.png'),
+    userDarkBlue: require('../assets/icons/user-darkblue.png'),
+    userPink: require('../assets/icons/user-pink.png'),
+    userPurple: require('../assets/icons/user-purple.png'),
+    userOrange: require('../assets/icons/user-orange.png'),
+};
 
 export default function PostCard() {
+    const getRandomAuthorIcon = () => {
+        const keys = Object.keys(authorIcons);
+        const randomIndex = Math.floor(Math.random() * keys.length);
+        return authorIcons[keys[randomIndex] as keyof typeof authorIcons];
+    };
+
     return (<>
         <Card colors={[colors.grey, colors.grey]} height={180}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <Text style={styles.postTitle}>Post Title</Text>
                 <TouchableOpacity>
-                    <FontAwesome name='bookmark' size={25} color={colors.darkgrey}></FontAwesome>
+                    <Image source={require('../assets/icons/bookmark-o.png')} style={styles.bookmark} />
                 </TouchableOpacity>
             </View>
 
@@ -29,7 +34,7 @@ export default function PostCard() {
             </Text>
 
             <View style={styles.author}>
-                <FontAwesome name='user-circle' size={26} color={authorColors[Math.floor(Math.random() * authorColors.length)]}></FontAwesome>
+                <Image source={getRandomAuthorIcon()} style={styles.authorIcon} />
             </View>
         </Card>
     </>)
@@ -50,7 +55,16 @@ const styles = StyleSheet.create({
         lineHeight: 20,
     },
     author: {
-        paddingVertical: 10,
+        paddingVertical: 5,
+        marginRight: -5,
         alignItems: 'flex-end',
     },
+    authorIcon: {
+        width: 40,
+        height: 40,
+    },
+    bookmark: {
+        width: 30,
+        height: 30,
+    }
 });

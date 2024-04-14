@@ -3,44 +3,37 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { colors } from '../styles/theme';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { Image } from 'react-native';
 
 interface BottomNavProps {
     navigation: NavigationProp<ParamListBase>;
+    pageName: string;
 }
 
-export default function BottomNav({ navigation }: BottomNavProps) {
-    const [activePage, setActivePage] = useState('Home');
-
+export default function BottomNav({ navigation, pageName }: BottomNavProps) {
     const handleNavigation = (pageName: string) => {
         navigation.navigate(pageName);
-        setActivePage(pageName);
     };
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={() => handleNavigation('Home')}>
-                <FontAwesome
-                    name="pie-chart"
-                    size={35}
-                    color={activePage === 'Home' ? colors.purple : colors.grey}
-                />
-            </TouchableOpacity>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => handleNavigation('Home')}>
+                    <Image style={styles.icon} source={pageName === 'Home'
+                        ? require('../assets/icons/dashboard.png')
+                        : require('../assets/icons/dashboard-o.png')} />
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => handleNavigation('Analytics')}>
-                <FontAwesome
-                    name="bar-chart"
-                    size={35}
-                    color={activePage === 'Analytics' ? colors.purple : colors.grey}
-                />
-            </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleNavigation('Analytics')}>
+                    <Image style={styles.icon} source={pageName === 'Analytics'
+                        ? require('../assets/icons/analytics.png')
+                        : require('../assets/icons/analytics-o.png')} />
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => handleNavigation('InSights')}>
-                <FontAwesome
-                    name="lightbulb-o"
-                    size={35}
-                    color={activePage === 'InSights' ? colors.purple : colors.grey}
-                />
-            </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleNavigation('InSights')}>
+                    <Image style={styles.icon} source={pageName === 'InSights'
+                        ? require('../assets/icons/insights.png')
+                        : require('../assets/icons/insights-o.png')} />
+                </TouchableOpacity>
         </View>
     );
 }
@@ -50,4 +43,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
     },
+    icon: {
+        width: 35,
+        height: 35,
+    }
 });
