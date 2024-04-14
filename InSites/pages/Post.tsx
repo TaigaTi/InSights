@@ -94,7 +94,7 @@ export default function Post({ navigation }: PostProps) {
 
             {/* Navigation */}
             <View style={{ width: '100%' }}>
-                <BottomNav navigation={navigation}></BottomNav>
+                <BottomNav navigation={navigation} pageName="InSights"></BottomNav>
             </View>
         </View>
 

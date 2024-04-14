@@ -16,7 +16,7 @@ export const AppBar: React.FC<AppBarProps> = ({ navigation }) => {
                 <Text style={styles.title}>InSites</Text>
             </View>
             <View style={styles.rightContainer}>
-                <FontAwesome name='user-circle'  size={30}  color={colors.purple}/>
+                <Image source={require('../assets/icons/user-purple.png')} style={{ width: 40, height: 40 }}></Image>
             </View>
         </View>
     );
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     rightContainer: {
-
+        padding:10,
     },
     title: {
         fontSize: 18,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
     },
     logo: {
-        width:40,
-        height:40,
+        width:45,
+        height:45,
     }
 });
