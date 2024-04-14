@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { colors } from '../styles/theme';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
-export default function BottomNav({ navigation }) {
+interface BottomNavProps {
+    navigation: NavigationProp<ParamListBase>;
+}
+
+export default function BottomNav({ navigation }: BottomNavProps) {
     const [activePage, setActivePage] = useState('Home');
 
-    const handleNavigation = (pageName: React.SetStateAction<string>) => {
+    const handleNavigation = (pageName: string) => {
         navigation.navigate(pageName);
         setActivePage(pageName);
     };

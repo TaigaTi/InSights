@@ -8,6 +8,7 @@ import BottomNav from '../components/BottomNav';
 import Card from '../components/Card';
 import { colors } from '../styles/theme';
 import PieChart from 'react-native-pie-chart';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
 // Temporary Pie Chart Data
 const series = [9, 34];
@@ -15,7 +16,11 @@ const series2 = [35, 23];
 const sliceColor = [colors.pink, colors.purple];
 const sliceColor2 = [colors.darkblue, colors.blue];
 
-export default function Analytics({ navigation }) {
+interface AnalyticsProps {
+    navigation: NavigationProp<ParamListBase>;
+}
+
+export default function Analytics({ navigation }: AnalyticsProps) {
     return (
         <View style={styles.container}>
             {/* Navigation */}

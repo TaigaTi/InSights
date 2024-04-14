@@ -7,8 +7,13 @@ import firebaseApp from "../firebaseConfig";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc, getFirestore } from 'firebase/firestore';
 import CustomAlert from "../components/Alert";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 
-export default function Signup({ navigation }) {
+interface SignupProps {
+    navigation: NavigationProp<ParamListBase>;
+}
+
+export default function Signup({ navigation }: SignupProps) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');

@@ -6,8 +6,13 @@ import React, { useState } from "react";
 import firebaseApp from "../firebaseConfig";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import CustomAlert from "../components/Alert";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 
-export default function Login({ navigation }) {
+interface LoginProps {
+    navigation: NavigationProp<ParamListBase>;
+}
+
+export default function Login({ navigation }: LoginProps) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [alertVisible, setAlertVisible] = useState(false);

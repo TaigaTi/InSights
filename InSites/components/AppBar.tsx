@@ -2,8 +2,13 @@ import { View, Text, StyleSheet } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { colors } from "../styles/theme";
 import { Image } from "react-native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 
-export default function AppBar() {
+interface AppBarProps {
+    navigation: NavigationProp<ParamListBase>;
+}
+
+export const AppBar: React.FC<AppBarProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.leftContainer}>

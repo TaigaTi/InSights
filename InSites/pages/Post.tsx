@@ -1,17 +1,22 @@
 import { View, Text, ScrollView } from "react-native";
-import AppBar from "../components/AppBar";
+import {AppBar} from "../components/AppBar";
 import HeadingText from "../styles/HeadingText";
 import { StyleSheet } from "react-native";
 import Card from "../components/Card";
 import { colors } from "../styles/theme";
 import BottomNav from "../components/BottomNav";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
+
+interface PostProps {
+    navigation: NavigationProp<ParamListBase>;
+}
 
 const author = "Jane Doe";
 const date = "12/02/24";
 const post = "it nostrud voluptate voluptate ipsum amet consectetur pariatur incididunt deserunt proident ullamco velit cillum incididunt mollit reprehenderit anim nisi eu aut. Loconsectetur pariatur incididunt deserunt proident ullamco velit cillum incididunt mollit reprehenderit anim nisi eu aut. Lorem…"
 
-export default function Post({ navigation }) {
+export default function Post({ navigation }: PostProps) {
     return (
         <View style={styles.container}>
             {/* Navigation */}

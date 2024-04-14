@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import AppBar from "../components/AppBar";
+import {AppBar} from "../components/AppBar";
 import { StyleSheet } from "react-native";
 import BottomNav from "../components/BottomNav";
 import HeadingText from "../styles/HeadingText";
@@ -7,9 +7,14 @@ import { colors } from "../styles/theme";
 import PostCard from "../components/PostCard";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { LinearGradient } from "expo-linear-gradient";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 
-export default function InSights({ navigation }) {
-    const handleNavigation = (pageName: React.SetStateAction<string>) => {
+interface InSightsProps {
+    navigation: NavigationProp<ParamListBase>;
+}
+
+export default function InSights({ navigation }: InSightsProps) {
+    const handleNavigation = (pageName: string) => {
         navigation.navigate(pageName);
     };
 
