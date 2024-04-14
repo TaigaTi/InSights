@@ -1,5 +1,5 @@
-import { View, Text, ScrollView } from "react-native";
-import {AppBar} from "../components/AppBar";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { AppBar } from "../components/AppBar";
 import HeadingText from "../styles/HeadingText";
 import { StyleSheet } from "react-native";
 import Card from "../components/Card";
@@ -7,6 +7,8 @@ import { colors } from "../styles/theme";
 import BottomNav from "../components/BottomNav";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { NavigationProp, ParamListBase } from "@react-navigation/native";
+import { Image } from "react-native";
+import { useState } from "react";
 
 interface PostProps {
     navigation: NavigationProp<ParamListBase>;
@@ -14,9 +16,12 @@ interface PostProps {
 
 const author = "Jane Doe";
 const date = "12/02/24";
-const post = "it nostrud voluptate voluptate ipsum amet consectetur pariatur incididunt deserunt proident ullamco velit cillum incididunt mollit reprehenderit anim nisi eu aut. Loconsectetur pariatur incididunt deserunt proident ullamco velit cillum incididunt mollit reprehenderit anim nisi eu aut. Lorem…"
+const post = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrud voluptate voluptate ipsum amet consectetur pariatur incididunt deserunt proident ullamco velit cillum incididunt mollit reprehenderit anim nisi eu aut. Loconsectetur pariatur incididunt deserunt proident ullamco velit cillum."
 
 export default function Post({ navigation }: PostProps) {
+    const [liked, setLiked] = useState(false);
+    const [bookmarked, setBookmarked] = useState(false);
+
     return (
         <View style={styles.container}>
             {/* Navigation */}
@@ -42,16 +47,20 @@ export default function Post({ navigation }: PostProps) {
                     showsVerticalScrollIndicator={false}
                 >
                     {/* Breadcrumb */}
-                    <View>
-                        <Text>
-                            Back to posts
-                        </Text>
-                    </View>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <View style={styles.breadcrumb}>
+                            <FontAwesome name="arrow-left" color={colors.black} size={10}></FontAwesome>
+                            <Text style={{ fontWeight: 'bold' }}>Back to Posts</Text>
+                        </View>
+                    </TouchableOpacity>
 
                     {/* Main Post Card */}
-                    <Card colors={[colors.grey, colors.grey]} height={550}>
-                        <View style={{ alignSelf: 'flex-start', paddingHorizontal: 10, paddingTop: 10 }}>
-                            <HeadingText>Post Title</HeadingText>
+                    <Card colors={[colors.grey, colors.grey]} height={540}>
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.title}>Post Title</Text>
+                            <TouchableOpacity onPress={() => setBookmarked(!bookmarked)}>
+                                <Image source={bookmarked? require('../assets/icons/bookmark.png') : require('../assets/icons/bookmark-o.png')} style={styles.bookmark} />
+                            </TouchableOpacity>
                         </View>
 
                         {/* Post Information */}
@@ -60,31 +69,39 @@ export default function Post({ navigation }: PostProps) {
                             flexDirection: 'row',
                             paddingVertical: 10,
                         }}>
-                            <View style={{ paddingRight: 15, paddingLeft: 10 }}>
-                                <FontAwesome name='user-circle' size={35} color={colors.darkblue}></FontAwesome>
+                            <View style={styles.author}>
+                                <Image source={require('../assets/icons/user-darkblue.png')} style={styles.authorIcon} />
                             </View>
                             <View>
-                                <Text>Author: {author}</Text>
-                                <Text>{date}</Text>
+                                <Text style={styles.authorInfo}>Author: {author}</Text>
+                                <Text style={styles.authorInfo}>{date}</Text>
                             </View>
                         </View>
 
                         {/* Post Content */}
-                        <View style={{ paddingTop: 20 }}>
-                            <HeadingText>Sub-Heading 1</HeadingText>
-                            <Text>{post}</Text>
-                        </View>
-                        <View style={{ paddingTop: 20 }}>
-                            <HeadingText>Sub-Heading 1</HeadingText>
-                            <Text>{post}</Text>
+                        <View style={{ paddingHorizontal: 10 }}>
+                            <View style={{ paddingTop: 15 }}>
+                                <Text style={styles.subheading}>Sub-Heading 1</Text>
+                                <Text>{post}</Text>
+                            </View>
+                            <View style={{ paddingTop: 20 }}>
+                                <Text style={styles.subheading}>Sub-Heading 2</Text>
+                                <Text>{post}</Text>
+                            </View>
                         </View>
 
                         {/* Post Interactions */}
-                        <View style={{ paddingLeft: 150, paddingTop: 30 }}>
+                        <View style={{ paddingLeft: 150, paddingTop: 25, marginRight: -15 }}>
                             <View style={styles.interactions}>
-                                <FontAwesome name='heart-o' size={25} color={colors.black}></FontAwesome>
-                                <FontAwesome name='comment-o' size={25} color={colors.black}></FontAwesome>
-                                <FontAwesome name='send-o' size={25} color={colors.black}></FontAwesome>
+                                <TouchableOpacity onPress={() => { setLiked(!liked) }}>
+                                    <Image source={liked ? require('../assets/icons/heart.png') : require('../assets/icons/heart-o.png')} style={styles.interactionIcons} />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Image source={require('../assets/icons/comment-o.png')} style={styles.interactionIcons} />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Image source={require('../assets/icons/share-o.png')} style={{ marginTop: 2, width: 27, height: 27 }} />
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </Card>
@@ -114,4 +131,53 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         justifyContent: 'space-evenly',
     },
+    breadcrumb: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 10,
+        width: '38%',
+        justifyContent: 'space-evenly',
+        opacity: 0.5,
+        fontWeight: 'bold',
+        paddingBottom: 2,
+    },
+    interactionIcons: {
+        width: 30,
+        height: 30,
+    },
+    author: {
+        marginTop: -5,
+        paddingHorizontal: 5,
+        alignItems: 'flex-end',
+        paddingRight: 10,
+    },
+    authorIcon: {
+        width: 50,
+        height: 50,
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 24,
+        color: colors.purple,
+    },
+    subheading: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: colors.black,
+        paddingBottom: 5,
+    },
+    authorInfo: {
+        opacity: 0.65,
+    },
+    bookmark: {
+        width: 30,
+        height: 30,
+        marginRight: -10,
+    },
+    titleContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        paddingTop: 10
+    }
 });
