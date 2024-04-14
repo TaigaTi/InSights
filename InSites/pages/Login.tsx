@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TextInput, Button, GestureResponderEvent, TouchableOpacity, Alert } from "react-native";
+import { View, Text, ScrollView, TextInput, Button, GestureResponderEvent, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { StyleSheet } from "react-native";
 import { colors } from "../styles/theme";
 import { Image } from "react-native";
@@ -18,12 +18,15 @@ export default function Login({ navigation }: LoginProps) {
     const [alertVisible, setAlertVisible] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const [alertTitle, setAlertTitle] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleLogin = () => {
+        setLoading(true);
+
         const auth = getAuth(firebaseApp);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
+                // const user = userCredential.user;
                 navigation.navigate('Home');
             })
             .catch((error) => {
@@ -31,6 +34,9 @@ export default function Login({ navigation }: LoginProps) {
                 setAlertTitle("Error");
                 setAlertMessage(errorMessage);
                 setAlertVisible(true);
+            })
+            .finally(() => {
+                setLoading(false);
             });
     };
 
@@ -99,7 +105,11 @@ export default function Login({ navigation }: LoginProps) {
 
                     {/* Submit Button */}
                     <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
-                        <Text style={styles.loginButtonText}>Log In</Text>
+                        {loading ? (
+                            <ActivityIndicator color="white" />
+                        ) : (
+                            <Text style={styles.loginButtonText}>Log In</Text>
+                        )}
                     </TouchableOpacity>
 
                     {/* Switch to Login */}
