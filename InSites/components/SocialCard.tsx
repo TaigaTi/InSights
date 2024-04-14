@@ -6,17 +6,17 @@ import { Text, View } from "react-native";
 import { StyleSheet } from "react-native";
 
 interface SocialCardProps {
-    name: string;
+    name: any;
     title: string;
     colors: string[];
 }
 
-export default function SocialCard(SocialCardProps) {
+export default function SocialCard(props: SocialCardProps) {
     return (
-        <Card colors={SocialCardProps.colors} height={120}>
-            {SocialCardProps.title &&
+        <Card colors={props.colors} height={120}>
+            {props.title &&
                 (<View style={{ flexDirection: 'row', width: '100%' }}>
-                    <FontAwesome name={SocialCardProps.name} size={20} color='white' />
+                    <FontAwesome name={props.name} size={20} color='white' />
                     <Text
                         style={{
                             color: 'white',
@@ -25,7 +25,7 @@ export default function SocialCard(SocialCardProps) {
                             padding: 1,
                             paddingHorizontal: 10,
                         }}
-                    >{SocialCardProps.title}</Text>
+                    >{props.title}</Text>
                 </View>)}
 
             <View style={{ flexDirection: 'row', paddingVertical: 15, justifyContent: 'space-evenly' }}>

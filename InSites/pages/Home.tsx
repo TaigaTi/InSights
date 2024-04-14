@@ -8,14 +8,19 @@ import PieChart from 'react-native-pie-chart';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import SocialCard from '../components/SocialCard';
 import BottomNav from '../components/BottomNav';
-import AppBar from '../components/AppBar';
+import {AppBar} from '../components/AppBar';
 import { colors } from '../styles/theme';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
+
+interface HomeProps {
+    navigation: NavigationProp<ParamListBase>;
+}
 
 // Temporary Pie Chart Data
 const series = [9, 34];
 const sliceColor = [colors.pink, colors.purple];
 
-export default function Home({ navigation }) {
+export default function Home({ navigation }: HomeProps) {
     return (
         <View style={styles.container}>
              {/* Navigation */}
