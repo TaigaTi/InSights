@@ -30,7 +30,6 @@ export default function Post({ navigation }: PostProps) {
             </View>
 
             {/* Page Title */}
-
             <View style={{
                 width: '100%',
                 flexDirection: 'column',
