@@ -44,7 +44,8 @@ export default function SocialCard(props: SocialCardProps) {
                     <Text style={styles.text}>25K</Text>
                 </View>
             </View>
-        </Card>);
+        </Card>
+    );
 }
 
 const styles = StyleSheet.create({
