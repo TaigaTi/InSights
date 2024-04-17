@@ -49,22 +49,32 @@ export default function Home({ navigation }: HomeProps) {
             </Card>
 
             {/* Social Account Dashboards */}
-            <SocialCard colors={[colors.purple, colors.pink]} name="instagram" title="Instagram"></SocialCard>
-            <SocialCard colors={[colors.pink, colors.orange]} name="twitter" title="Twitter"></SocialCard>
-            <SocialCard colors={[colors.blue, colors.darkblue]} name="facebook" title="Facebook"></SocialCard>
+            <TouchableOpacity onPress={() => { navigation.navigate('DetailedAnalytics') }}>
+                <SocialCard colors={[colors.purple, colors.pink]} name="instagram" title="Instagram"></SocialCard>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => { navigation.navigate('DetailedAnalytics') }}>
+                <SocialCard colors={[colors.pink, colors.orange]} name="twitter" title="Twitter"></SocialCard>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => { navigation.navigate('DetailedAnalytics') }}>
+                <SocialCard colors={[colors.blue, colors.darkblue]} name="facebook" title="Facebook"></SocialCard>
+            </TouchableOpacity>
 
             {/* New Social Account */}
-            <Card colors={[colors.grey, colors.grey]} height={60}>
-                <View style={{ flexDirection: 'row' }}>
-                    <View style={{ paddingHorizontal: 5 }}>
-                        <FontAwesome name='plus' size={15}></FontAwesome>
-                    </View>
+            <TouchableOpacity>
+                <Card colors={[colors.grey, colors.grey]} height={60}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={{ paddingHorizontal: 5 }}>
+                            <FontAwesome name='plus' size={15}></FontAwesome>
+                        </View>
 
-                    <View style={{ paddingHorizontal: 5 }}>
-                        <Text style={{ fontSize: 15, fontWeight: '500' }}>Add Account</Text>
+                        <View style={{ paddingHorizontal: 5 }}>
+                            <Text style={{ fontSize: 15, fontWeight: '500' }}>Add Account</Text>
+                        </View>
                     </View>
-                </View>
-            </Card>
+                </Card>
+            </TouchableOpacity>
         </Layout >
     );
 };
