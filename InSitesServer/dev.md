@@ -21,7 +21,7 @@ Library: analytix
 - GET /api/v1/youtube/likes: Returns the number of likes a user has on their channel
 - GET /api/v1/youtube/followers: Returns the number of followers a user has on their channel
 - GET /api/v1/youtube/following: Returns the number of users a user is following on YouTube
-- GET /api/v1/youtube/posts: Returns the number of videos a user has uploaded
+- GET /api/v1/youtube/videos: Returns the number of videos a user has uploaded
 
 ### Instagram
 Library: insta-scrape

@@ -1,9 +1,12 @@
 from fastapi import FastAPI
-from routers import twitter
+from routers import twitter, instagram, tiktok, youtube
 
 app = FastAPI()
 
 app.include_router(twitter.router)
+app.include_router(instagram.router)
+app.include_router(tiktok.router)
+app.include_router(youtube.router)
 
 @app.get("/")
 async def index():
