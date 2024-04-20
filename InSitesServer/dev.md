@@ -9,7 +9,6 @@ This serve will be responsible for interacting with various APIs to provide anal
 - Instagram
 - TikTok
 
-
 ## Services
 As mentioned, this server will act as an API to serve the information to the client side. 
 
@@ -18,11 +17,28 @@ For each social media platform, the following API's will be used (tentative and 
 ### Youtube
 Library: analytix
 
+#### Endpoints
+
+
 ### Instagram
 Library: TikTokApi
+
+#### Endpoints
 
 ### TikTok
 Library: insta-scrape
 
+#### Endpoints
+
 ### Twitter
 Library: Tweepy
+
+#### Endpoints
+
+### Twitter
+Library: Tweepy
+
+#### Endpoints
+- GET /api/v1/twitter/followers: Returns the number of users following a user
+- GET /api/v1/twitter/following: Returns the number of users a user is following
+- GET /api/v1/twitter/posts: Returns the number of posts a user has made
