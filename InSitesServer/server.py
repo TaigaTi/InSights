@@ -1,6 +1,9 @@
 from fastapi import FastAPI
+from routers import twitter
 
 app = FastAPI()
+
+app.include_router(twitter.router)
 
 @app.get("/")
 async def index():
