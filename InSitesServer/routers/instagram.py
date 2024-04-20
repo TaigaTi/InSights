@@ -1,7 +1,7 @@
 """This file will serve to handle the Twitter API routes."""
 
 from fastapi import APIRouter
-from helpers.twitterHelper import TwitterHelper
+from helpers.instagramHelper import InstagramHelper
 
 router = APIRouter(prefix="/api/v1/instagram", tags=["Instagram"])
 
