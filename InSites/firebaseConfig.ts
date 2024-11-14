@@ -1,12 +1,20 @@
 import { initializeApp } from '@firebase/app';
+import { 
+    FIREBASE_API_KEY,
+    FIREBASE_AUTH_DOMAIN,
+    FIREBASE_PROJECT_ID,
+    FIREBASE_STORAGE_BUCKET,
+    FIREBASE_MESSAGING_SENDER_ID,
+    FIREBASE_APP_ID
+  } from '@env';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCGY670zOKEdQIO6qn0r9E7iaskkAhBbUE",
-    authDomain: "insites-208d2.firebaseapp.com",
-    projectId: "insites-208d2",
-    storageBucket: "insites-208d2.appspot.com",
-    messagingSenderId: "394345433966",
-    appId: "1:394345433966:web:ecd8ba35db5291d6808f7f",
+    apiKey: FIREBASE_API_KEY,
+    authDomain: FIREBASE_AUTH_DOMAIN,
+    projectId: FIREBASE_PROJECT_ID,
+    storageBucket: FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+    appId: FIREBASE_APP_ID,
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
